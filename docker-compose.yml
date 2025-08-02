@@ -8,10 +8,5 @@ services:
       - "5678:5678"
     volumes:
       - ./n8n_data:/home/node/.n8n
-    environment:
-      - N8N_BASIC_AUTH_ACTIVE=true
-      - N8N_BASIC_AUTH_USER=${N8N_USER}
-      - N8N_BASIC_AUTH_PASSWORD=${N8N_PASS}
-      - N8N_HOST=0.0.0.0
-      - N8N_PORT=5678
-      - WEBHOOK_TUNNEL_URL=https://${RAILWAY_STATIC_URL}
+    env_file:
+      - .env
