@@ -1,10 +1,13 @@
 # Use official n8n image
-FROM n8nio/n8n
+FROM n8nio/n8n:latest
 
-# Create /data and fix permissions for n8n
-RUN mkdir -p /data && chown -R node:node /data
+# Switch to root to fix permissions
+USER root
 
-# Switch to non-root user (node)
+# Ensure /data belongs to node user (ignore mkdir, just chown)
+RUN chown -R node:node /data || true
+
+# Switch back to node
 USER node
 
 # Expose default n8n port
