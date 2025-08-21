@@ -1,16 +1,13 @@
 # Use official n8n image
-FROM n8nio/n8n:1.39.1
+FROM n8nio/n8n
 
-# Set working directory
-WORKDIR /data
+# Create /data and fix permissions for n8n
+RUN mkdir -p /data && chown -R node:node /data
 
-# Environment defaults (Railway will override with its ENV)
-ENV N8N_PORT=5678
-ENV N8N_HOST=0.0.0.0
-ENV N8N_USER_FOLDER=/data
-ENV WEBHOOK_URL=${WEBHOOK_URL}
+# Switch to non-root user (node)
+USER node
 
-# Expose n8n port
+# Expose default n8n port
 EXPOSE 5678
 
 # Start n8n
