@@ -3,9 +3,7 @@
   "build": {
     "dockerfilePath": "Dockerfile"
   },
-  "deploy": {
-    "startCommand": 
-  },
+
   "mounts": [
     {
       "source": "n8n_data",
